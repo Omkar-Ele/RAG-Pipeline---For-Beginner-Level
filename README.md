@@ -1,2 +1,1 @@
-# RAG-Pipeline---For-Beginner-Level
-This Repo has detailed knowledge about different levels in RAG pipeline for someone who is a beginner. I tried to keep the explanation as simple as I can make.
+** This repo explains Vector Similarity Search like pgvector, FAISS, OpenSearch k-NN and their comparision, but they live at different layers of the stack **
