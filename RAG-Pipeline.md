@@ -494,3 +494,47 @@ Frontend
 ```
 
 ![Alt text description](https://miro.medium.com/0*7OaGfO2DctgswevJ.jpeg)
+
+| RAG Stage                            | Popular models / algorithms                                                   | Popular frameworks / infrastructure                                 | 
+| ------------------------------------ | ----------------------------------------------------------------------------- | ------------------------------------------------------------------- | 
+| **1. Document Ingestion & Chunking** | Docling VLM models, OCR models; usually no LLM for normal text                | **Docling**, Unstructured, LangChain, LlamaIndex, Haystack, PyMuPDF | 
+| **2. Embedding Generation**          | OpenAI `text-embedding-3-small/large`, Voyage 4, Cohere Embed, BGE-M3, MiniLM | SentenceTransformers, Hugging Face, OpenAI/Voyage/Cohere SDKs       | 
+| **3. Vector Storage**                | HNSW, IVFFlat                                                                 | **pgvector**, Qdrant, Pinecone, Weaviate, Milvus, OpenSearch        |   
+| **4. Query Understanding**           | GPT family, Claude, Gemini, small local LLMs                                  | LangChain, LlamaIndex, Haystack                                     | 
+| **5. Permission-Aware Retrieval**    | Dense retrieval, cosine similarity, BM25, hybrid search                       | **pgvector**, OpenSearch, Qdrant + application ACLs                 |  
+| **6. Reranking**                     | Cohere Rerank v4, Voyage Rerank, BGE rerankers, CrossEncoder MiniLM           | Cohere, Voyage, SentenceTransformers, Haystack                      |  
+| **7. Grounding / Context Building**  | Usually no special model; sometimes LLM context compression                   | LangChain, LlamaIndex, Haystack                                     | 
+| **8. Generation**                    | GPT family, Claude Sonnet/Opus, Gemini Flash/Pro, Mistral, open-weight models | OpenAI/Anthropic/Google APIs, LangChain, LlamaIndex                 | 
+| **9. Citation**                      | Usually **no model**                                                          | Your metadata + LangChain/LlamaIndex                                | 
+| **10. Evaluation & Monitoring**      | LLM-as-judge models                                                           | LangSmith, RAGAS, Phoenix, DeepEval, TruLens                        | 
+
+> Popular model families
+
+* For hosted RAG generation, common choices include:
+
+| Provider      | Model family       | Current model ID            |
+| ------------- | ------------------ | --------------------------- |
+| **OpenAI**    | GPT-5.6 Sol        | `gpt-5.6-sol`               |
+|               | GPT-5.6 Terra      | `gpt-5.6-terra`             |
+|               | GPT-5.6 Luna       | `gpt-5.6-luna`              |
+| **Anthropic** | Claude Opus 5      | `claude-opus-5`             |
+|               | Claude Sonnet 5    | `claude-sonnet-5`           |
+|               | Claude Haiku 4.5   | `claude-haiku-4-5-20251001` |
+| **Google**    | Gemini Pro         | `gemini-3.1-pro-preview`    |
+|               | Gemini Flash       | `gemini-3.8-flash`          |
+|               | Gemini Flash-Lite  | `gemini-3.5-flash-lite`     |
+| **Mistral**   | Mistral Medium 3.5 | `mistral-medium-latest`     |
+|               | Mistral Small 4    | `mistral-small-latest`      |
+|               | Mistral Large 3    | `mistral-large-latest`      |
+
+
+* Frameworks: 
+```
+LangChain
+LlamaIndex
+Haystack
+
+or
+
+direct provider SDK
+```
