@@ -8,11 +8,11 @@
 | **FAISS**           | Vector search library             | Maximum control/performance inside your own Python/C++ service             | You must build persistence, filtering, replication, APIs, etc. yourself          |
 | **OpenSearch k-NN** | Distributed search engine feature | Large-scale vector + keyword/hybrid search, filters, distributed workloads | Heavier infrastructure and operational complexity                                |
 
-
+---
 
 ## pgvector:
 
-pgvector stores embeddings directly in PostgreSQL,
+> pgvector stores embeddings directly in PostgreSQL,
 
 
 ```sql 
@@ -22,7 +22,7 @@ ORDER BY embedding <=> query_embedding
 LIMIT 10; 
 ```
 
-Its biggest advantage is everything stays in Postgres. You can combine vector similarity with normal SQL:
+* Its biggest advantage is everything stays in Postgres. You can combine vector similarity with normal SQL:
 
 ```sql 
 SELECT *
@@ -33,13 +33,13 @@ ORDER BY embedding <=> query_embedding
 LIMIT 10;
 ```
 
-Use pgvector when your system already runs on Postgres and you want something operationally simple.
+> Use pgvector when your system already runs on Postgres and you want something operationally simple.
 
 ## FAISS:
 
-FAISS, originally developed by Meta, is fundamentally a high-performance vector indexing/search library.
+> FAISS, originally developed by Meta, is fundamentally a high-performance vector indexing/search library.
 
-It has many indexing strategies, including:
+* It has many indexing strategies, including:
 
 ```text
 Flat/exact search
@@ -49,9 +49,9 @@ Product quantization
 GPU acceleration
 ```
 
-FAISS can be extremely fast and memory-efficient, particularly when you tune the index carefully.
+> FAISS can be extremely fast and memory-efficient, particularly when you tune the index carefully.
 
-But FAISS is not really a database. Out of the box, it doesn't give you the full surrounding system you'd expect from one:
+* But FAISS is not really a database. Out of the box, it doesn't give you the full surrounding system you'd expect from one:
 
 ```text
 authentication
@@ -63,15 +63,15 @@ REST APIs
 cluster management
 ```
 
-You usually build those pieces around it.
+> You usually build those pieces around it.
 
-It's excellent when you're building a specialized vector-search service and need fine-grained control.
+> It's excellent when you're building a specialized vector-search service and need fine-grained control.
 
 ## OpenSearch k-NN:
 
-OpenSearch is a distributed search engine, similar architecturally to Elasticsearch. Its k-NN functionality adds vector search alongside conventional search.
+> OpenSearch is a distributed search engine, similar architecturally to Elasticsearch. Its k-NN functionality adds vector search alongside conventional search.
 
-This means one query can combine:
+* This means one query can combine:
 
 ```text
 vector similarity
@@ -85,7 +85,7 @@ facets
 permissions
 ```
 
-For example, a search application might do:
+* For example, a search application might do:
 
 ```text
 semantic similarity: "comfortable running shoes"
@@ -97,9 +97,9 @@ AND
 keyword relevance
 ```
 
-OpenSearch is especially attractive for hybrid search where keyword relevance and embeddings both matter.
+> OpenSearch is especially attractive for hybrid search where keyword relevance and embeddings both matter.
 
-It also handles things like:
+* It also handles things like:
 
 ```text
 sharding
@@ -112,10 +112,10 @@ REST APIs
 
 ## Architecture difference
 
-The easiest way to remember them is:
+> The easiest way to remember them is:
 
 
-*pgvector*
+**pgvector**
 
 ```text
 Postgres
@@ -124,14 +124,14 @@ Postgres
  └── vector search
  ```
 
-*FAISS*
+**FAISS**
 
 ```text
 Your Application
  └── FAISS
       └── vector index
  ```
-*OpenSearch*
+**OpenSearch**
 
 ```text
 Distributed Search Cluster
@@ -187,6 +187,29 @@ LLM
 
 ## High-Level AI Orchestration Frameworks
 Frameworks that sit above vector databases to simplify ingestion, chunking, embedding generation, and retrieval pipelines (RAG):
+
+* **LlamaIndex:** Framework specialized for connecting custom data sources to LLMs via vector stores, hierarchical indices, and advanced retrieval strategies.
+
+* **LangChain:** Popular framework for building LLM applications, offering integrations across nearly all vector stores and embedding models.
+
+* **Haystack (by Deepset):** Enterprise-grade NLP framework for building production search and modular RAG pipelines.
+
+* **Semantic Kernel:** Microsoft's SDK for orchestrating AI models, memory connectors, and vector plugins.
+
+## Database Extensions & Hybrid Search Platforms
+
+> Relational databases and search platforms that added native vector capabilities alongside traditional data:
+
+* **pgvector:** PostgreSQL extension allowing native vector storage, HNSW/IVFFlat indexing, and combined SQL + vector queries.
+
+* **OpenSearch k-NN / Elasticsearch:** Distributed search engines integrating k-NN vector search alongside BM25 keyword search for hybrid retrieval.
+
+* **Redis Query Engine (RedisVL):** In-memory vector search extension for ultra-low latency feature stores and caching.
+
+* **MongoDB Atlas Vector Search:** Integrated vector search directly within MongoDB collections.
+
+## High-Level AI Orchestration Frameworks
+> Frameworks that sit above vector databases to simplify ingestion, chunking, embedding generation, and retrieval pipelines (RAG):
 
 * **LlamaIndex:** Framework specialized for connecting custom data sources to LLMs via vector stores, hierarchical indices, and advanced retrieval strategies.
 
